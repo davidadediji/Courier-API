@@ -1,13 +1,16 @@
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
+const calculation = require('./operation')
 
-const app = express()
-app.use(express.urlencoded({extended:false}))
-app.use(express.json())
+const app = express();
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cors());
 
-app.post('/grade', (req, res, next)=>{
-    const {operation_type, x, y} = req.body
-    console.log(operation_type, x, y)
-})
+app.post('/',calculation, (req, res) => {
+	res.send('Done')
+});
 
-app.listen()
+app.listen(5005, () => {
+	console.log('listening');
+});
