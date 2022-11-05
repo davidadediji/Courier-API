@@ -1,18 +1,13 @@
 const express = require('express');
-const parser = require('body-parser');
 const cors = require('cors')
 
-
-const app = express();
-
+const app = express()
+app.use(express.urlencoded({extended:false}))
 app.use(express.json())
-app.use(cors())
 
-app.post('/post', (req, res)=>{
-    
+app.post('/grade', (req, res, next)=>{
+    const {operation_type, x, y} = req.body
+    console.log(operation_type, x, y)
 })
 
-
-app.listen(3000, (event)=>{
-    console.log(event, 'listening at port 3000')
-})
+app.listen()
